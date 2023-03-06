@@ -240,8 +240,7 @@ class IpV4():
   def decode(self):
     a = self.a
     s = bytes2ip(a)
-
-    # à modifier ici
+    
     ipsrc = (str(a[12]), str(a[13]), str(a[14]), str(a[15]))
     ipdst = (str(a[16]), str(a[17]), str(a[18]), str(a[19]))
     version = "{:02X}".format(((a[0] & 0xF0)) >> 4) + " (en hex)"
@@ -296,16 +295,16 @@ class UDP():
     checksum = a[6:8].hex()
 
     dict_data = {
-      "port_source": port_src,
-      "port_dest": port_des,
+      "src port": port_src,
+      "dst port": port_des,
       "length": length,
       "checksum": checksum
     }
-    DgEngine.dgdict.update("udp", dict_data)  #
+    DgEngine.dgdict.update("udp", dict_data)
 class TCP():
     def __init__(
             self,
-            seg):  # passe juste le pkt à décoder, et non le datagram au complet
+            seg):
         self.a = seg
 
     def decode(self):
