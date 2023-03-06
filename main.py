@@ -140,6 +140,9 @@ class DgEngine(
     if layer == "ICMP":
       transported = transport_protocol(ICMP(seg))
       layer = transported.transport_proto_decode()
+    if layer == "TCP":
+      transported = transport_protocol(TCP(seg))
+      layer = transported.transport_proto_decode()
     else:
       return ("None")
 
